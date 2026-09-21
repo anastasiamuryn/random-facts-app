@@ -1,5 +1,6 @@
 const btnShow = document.getElementById('btnShow');
 const btnClose = document.getElementById('btnClose');
+const btnShowOrigin = document.getElementById('btnShowOrigin');
 const modalOverlay = document.getElementById('modal_overlay');
 const factContent = document.getElementById('fact');
 
@@ -29,9 +30,11 @@ const facts = [
          <br>
          <div id="pizza"></div>
          `,
+         `
+         <p>Чіт: В лівому нижньому кутку є приховано кнопка. Щоб побачити ще непрочитаний факт натисніть на неї</p>`
 ];
 
-function pizza(){
+function pizza() {
          const pizzaContainer = document.getElementById('pizza');
          const timerContainer = document.getElementById('timer');
          if (!pizzaContainer || !timerContainer) {
@@ -39,11 +42,11 @@ function pizza(){
          }
          pizzaContainer.innerHTML = '';
          timerContainer.textContent = '40';
-         let timer=40;
-         let pizza_count=0;
-         timerInterval = setInterval(() =>{
+         let timer = 40;
+         let pizza_count = 0;
+         timerInterval = setInterval(() => {
                   timer--;
-                  timerContainer.textContent=timer;
+                  timerContainer.textContent = timer;
                   if ((40 - timer) % 4 === 0 && pizza_count < 10) {
                            pizzaContainer.textContent += '🍕';
                            pizza_count++;
@@ -114,8 +117,37 @@ btnShow.addEventListener('click', function () {
          if (randomIndex === 2) {
                   age_timer();
                   timerInterval = setInterval(age_timer, 1000);
-         }else if(randomIndex===3){
+         } else if (randomIndex === 3) {
                   pizza();
+         }
+});
+
+btnShowOrigin.addEventListener('click', function () {
+         clicks++;
+         clickCountSpan.textContent = clicks;
+         if (seenFacts.size === facts.length) {
+                  alert("Ви вже побачили усі факти, і можете переглядати лише повторно, натискаючи на основну кнопку");
+         } else {
+                  let randomIndex = 0;
+                  do {
+                           randomIndex = Math.floor(Math.random() * facts.length);
+                  } while (seenFacts.has(randomIndex));
+
+                  factContent.innerHTML = facts[randomIndex];
+
+                  seenFacts.add(randomIndex);
+                  seenCount.textContent = seenFacts.size;
+
+                  modalOverlay.classList.remove('hidden');
+
+                  clearInterval(timerInterval);
+
+                  if (randomIndex === 2) {
+                           age_timer();
+                           timerInterval = setInterval(age_timer, 1000);
+                  } else if (randomIndex === 3) {
+                           pizza();
+                  }
          }
 });
 

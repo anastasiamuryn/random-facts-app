@@ -25,9 +25,11 @@ body {
          box-shadow: 0 8px 15px rgba(108, 92, 231, 0.3);
          transition: all 0.3s ease;
 }
-#fact{
+
+#fact {
          font-size: 18px;
 }
+
 #btnClose {
          position: absolute;
          top: 15px;
@@ -67,6 +69,17 @@ body {
 
 .hidden {
          display: none !important;
+}
+
+#btnShowOrigin {
+         opacity: 0;
+         position: fixed;
+         cursor: pointer;
+         bottom: 0;
+         right: 0;
+         width: 30%;
+         height: 80px;
+         z-index: 10;
 }
 
 footer {
