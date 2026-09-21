@@ -15,7 +15,7 @@ body {
 
 #btnShow {
          padding: 16px 32px;
-         font-size: 18px;
+         font-size: 20px;
          font-weight: 600;
          color: #ffffff;
          background-color: #32865c;
@@ -25,7 +25,9 @@ body {
          box-shadow: 0 8px 15px rgba(108, 92, 231, 0.3);
          transition: all 0.3s ease;
 }
-
+#fact{
+         font-size: 18px;
+}
 #btnClose {
          position: absolute;
          top: 15px;
